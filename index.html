@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darkex Partnership Program</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-box {
+            max-width: 1100px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid #22c55e;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #22c55e;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #22c55e 0%, #10b981 50%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite;
+            line-height: 1.1;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 20px #22c55e); }
+            50% { filter: brightness(1.5) drop-shadow(0 0 40px #22c55e); }
+        }
+
+        .subtitle {
+            font-size: 26px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .desc {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            font-size: 17px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        .btn.green {
+            background: linear-gradient(135deg, #22c55e, #10b981);
+            color: #000;
+            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.5);
+        }
+
+        .btn.green:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(34, 197, 94, 0.7);
+        }
+
+        .btn.border {
+            background: transparent;
+            color: #22c55e;
+            border: 2px solid #22c55e;
+        }
+
+        .btn.border:hover {
+            background: #22c55e;
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid #22c55e;
+            padding: 25px 35px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+            transition: all 0.3s;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .stat:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 50px rgba(34, 197, 94, 0.6);
+        }
+
+        .stat-num {
+            display: block;
+            font-size: 42px;
+            font-weight: 900;
+            color: #22c55e;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Section */
+        .sec {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sec-head {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .sec-head h2 {
+            font-size: 46px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sec-head p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Commission Levels */
+        .levels {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .level-card {
+            background: rgba(26, 26, 26, 0.9);
+            border: 2px solid rgba(34, 197, 94, 0.4);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #22c55e, #10b981);
+            transform: scaleY(0);
+            transition: transform 0.3s;
+        }
+
+        .level-card:hover {
+            border-color: #22c55e;
+            transform: translateX(10px);
+            box-shadow: 0 15px 50px rgba(34, 197, 94, 0.3);
+        }
+
+        .level-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .level-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .level-icon {
+            font-size: 32px;
+            filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.5));
+        }
+
+        .level-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #22c55e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .level-info {
+            display: grid;
+            gap: 12px;
+            font-size: 15px;
+        }
+
+        .level-info div {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .level-info div:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .info-value {
+            font-weight: 700;
+            color: #22c55e;
+        }
+
+        /* Important Notes */
+        .notes-box {
+            background: rgba(26, 26, 26, 0.9);
+            border: 2px solid #dc2626;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+        }
+
+        .notes-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .notes-header h3 {
+            font-size: 26px;
+            color: #dc2626;
+            text-transform: uppercase;
+        }
+
+        .notes-list {
+            list-style: none;
+            display: grid;
+            gap: 15px;
+        }
+
+        .notes-list li {
+            padding-left: 30px;
+            position: relative;
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .notes-list li::before {
+            content: '•';
+            position: absolute;
+            left: 10px;
+            color: #dc2626;
+            font-size: 20px;
+        }
+
+        /* Who Should Apply */
+        .cols {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .col {
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            padding: 40px;
+            border-radius: 25px;
+        }
+
+        .col.good {
+            border-color: #22c55e;
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.3);
+        }
+
+        .col.bad {
+            border-color: #dc2626;
+            box-shadow: 0 0 40px rgba(220, 38, 38, 0.3);
+        }
+
+        .col h3 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .col.good h3 { color: #22c55e; }
+        .col.bad h3 { color: #dc2626; }
+
+        .col ul {
+            list-style: none;
+        }
+
+        .col li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 15px;
+        }
+
+        .col li:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA */
+        .cta-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(220, 38, 38, 0.1));
+            border: 3px solid #22c55e;
+            border-radius: 30px;
+            padding: 70px 40px;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(34, 197, 94, 0.3);
+        }
+
+        .cta-box h2 {
+            font-size: 40px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: #22c55e;
+        }
+
+        .cta-box p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 35px;
+        }
+
+        /* Contact */
+        .contact-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(26, 26, 26, 0.9);
+            border: 3px solid #22c55e;
+            padding: 60px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(34, 197, 94, 0.4);
+        }
+
+        .contact-box h2 {
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #22c55e;
+        }
+
+        .contact-box .sub {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
+        }
+
+        .contact-items {
+            margin-bottom: 35px;
+        }
+
+        .contact-item {
+            margin: 25px 0;
+            padding: 25px;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(34, 197, 94, 0.2);
+            transform: scale(1.05);
+        }
+
+        .contact-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item a {
+            font-size: 21px;
+            font-weight: 700;
+            color: #22c55e;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: #10b981;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.9);
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 2px solid #22c55e;
+        }
+
+        .f-logo {
+            font-size: 30px;
+            font-weight: 900;
+            color: #22c55e;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .f-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .f-links a {
+            color: #22c55e;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .f-links a:hover {
+            color: #10b981;
+        }
+
+        /* Form Styles */
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(26, 26, 26, 0.9);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #22c55e;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #22c55e;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group.checkbox {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .form-group.checkbox input {
+            width: 20px;
+            height: 20px;
+            margin-top: 3px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .form-group.checkbox label {
+            text-transform: none;
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 18px;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 20px;
+        }
+
+        /* Form Success Message */
+        .success-message {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(34, 197, 94, 0.1);
+            border: 2px solid #22c55e;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .success-message h3 {
+            font-size: 32px;
+            color: #22c55e;
+            margin-bottom: 15px;
+        }
+
+        .success-message p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 42px; }
+            .subtitle { font-size: 22px; }
+            .sec-head h2 { font-size: 36px; }
+            .contact-box { padding: 40px 25px; }
+            .cta-box { padding: 50px 25px; }
+            .cols { grid-template-columns: 1fr; }
+            .stats { gap: 20px; }
+            .level-card { padding: 25px; }
+            .form-container { padding: 35px 25px; }
+            .form-row { grid-template-columns: 1fr; gap: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 36px; }
+            .badge { font-size: 11px; padding: 6px 15px; }
+            .btn { padding: 15px 30px; font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    
+    <div class="content">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-box">
+                <div class="badge">🌍 GLOBAL PARTNERSHIP PROGRAM</div>
+                <h1>Partner with Darkex</h1>
+                <p class="subtitle">Transform Your Crypto Community into Revenue</p>
+                <p class="desc">Join the world's leading exchange partnership program with industry-leading commissions and benefits</p>
+                <div class="btns">
+                    <a href="#apply" class="btn green">Apply Now</a>
+                    <a href="#commission" class="btn border">View Commission</a>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-num">20%</span>
+                        <span class="stat-label">Loss Rebate</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">50+</span>
+                        <span class="stat-label">Partners</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">24/7</span>
+                        <span class="stat-label">Support</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">Up to 75%</span>
+                        <span class="stat-label">Commission</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commission Structure -->
+        <section id="commission" class="sec">
+            <div class="sec-head">
+                <div class="badge">💎 COMMISSION STRUCTURE</div>
+                <h2>Partner Commission Boost & Cash Bonus Program</h2>
+                <p>Tiered commission system with increasing rewards based on monthly trading volume</p>
+            </div>
+
+            <div class="levels">
+                <div class="level-card">
+                    <div class="level-header">
+                        <span class="level-icon">💎</span>
+                        <h3 class="level-title">Level 1</h3>
+                    </div>
+                    <div class="level-info">
+                        <div>
+                            <span class="info-label">Base Commission:</span>
+                            <span class="info-value">Platform Standard</span>
+                        </div>
+                        <div>
+                            <span class="info-label">Extra Commission Boost:</span>
+                            <span class="info-value">+40%</span>
+                        </div>
+                        <div>
+                            <span class="info-label">Required Monthly Volume:</span>
+                            <span class="info-value">$1M</span>
+                        </div>
+                        <div>
+                            <span class="info-label">Cash Bonus:</span>
+                            <span class="info-value">100 USDT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-card">
+                    <div class="level-header">
+                        <span class="level-icon">🚀</span>
+                        <h3 class="level-title">Level 2</h3>
+                    </div>
+                    <div class="level-info">
+                        <div>
+                            <span class="info-label">Extra Commission Boost:</span>
+                            <span class="info-value">+50%</span>
+                        </div>
+                        <div>
+                            <span class="info-label">Required Monthly Volume:</span>
+                            <span class="info-value">$10M</span>
+                        </div>
+                        <div>
+                            <span class="info-label">Cash Bonus:</span>
+                            <span class="info-value">700 USDT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-card">
+                    <div class="level-header">
+                        <span class="level-icon">🔥</span>
+                        <h3 class="level-title">Level 3</h3>
+                    </div>
+                    <div class="level-info">
+                        <div>
+                            <span class="info-label">Extra Commission Boost:</span>
+                            <span class="info-value">+60%</span>
+                        </div>
+                        <div>
+                            <span class="info-label">Required Monthly Volume:</span>
+                            <span class="info-value">$30M</span>
+                        </div>
+                        <div>
+                            <span class="info-label">Cash Bonus:</span>
+                            <span class="info-value">2,000 USDT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-card">
+                    <div class="level-header">
+                        <span class="level-icon">👑</span>
+                        <h3 class="level-title">Level 4</h3>
+                    </div>
+                    <div class="level-info">
+                        <div>
+                            <span class="info-label">Extra Commission Boost:</span>
+                            <span class="info-value">+70%</span>
+                        </div>
+                        <div>
+                            <span class="info-label">Required Monthly Volume:</span>
+                            <span class="info-value">$60M</span>
+                        </div>
+                        <div>
+                            <span class="info-label">Cash Bonus:</span>
+                            <span class="info-value">4,500 USDT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-card">
+                    <div class="level-header">
+                        <span class="level-icon">🏆</span>
+                        <h3 class="level-title">Level 5</h3>
+                    </div>
+                    <div class="level-info">
+                        <div>
+                            <span class="info-label">Extra Commission Boost:</span>
+                            <span class="info-value">+75%</span>
+                        </div>
+                        <div>
+                            <span class="info-label">Required Monthly Volume:</span>
+                            <span class="info-value">$100M</span>
+                        </div>
+                        <div>
+                            <span class="info-label">Cash Bonus:</span>
+                            <span class="info-value">9,000 USDT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-box">
+                <div class="notes-header">
+                    <span style="font-size: 32px;">📌</span>
+                    <h3>Important Notes</h3>
+                </div>
+                <ul class="notes-list">
+                    <li>Commission boosts are calculated on partner referral earnings, not as fixed payouts.</li>
+                    <li>Partners are upgraded instantly once required monthly volume is reached — no need to wait for month-end.</li>
+                    <li>Cash bonuses are paid separately after level confirmation.</li>
+                    <li>Volume resets monthly, commission level adjusts dynamically.</li>
+                    <li>The rewards listed above are monthly. Each cash reward is given once per month, based on the total trading volume reached — not per every $1 million USDT.</li>
+                    <li>Hedging, wash trading, or any unfairly generated volume will not be counted toward total volume.</li>
+                    <li><strong>Example:</strong> If you reach $60M volume by the second week of the month, after verification, your commission rate will be adjusted to 70% for the remainder of the month.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Who Should Apply -->
+        <section class="sec">
+            <div class="sec-head">
+                <div class="badge">REQUIREMENTS</div>
+                <h2>Who Should Apply?</h2>
+                <p>Determine if the Darkex Partnership Program aligns with your business</p>
+            </div>
+            <div class="cols">
+                <div class="col good">
+                    <h3>✓ Ideal Partners</h3>
+                    <ul>
+                        <li>Content Creators (YouTube, TikTok, Instagram)</li>
+                        <li>Trading Communities (Telegram, Discord)</li>
+                        <li>Crypto Educators & Course Creators</li>
+                        <li>Financial Media & News Sites</li>
+                        <li>Industry Professionals with Networks</li>
+                    </ul>
+                </div>
+                <div class="col bad">
+                    <h3>✗ Not Suitable For</h3>
+                    <ul>
+                        <li>Inactive or Non-Crypto Audiences</li>
+                        <li>Unrelated Content Niches</li>
+                        <li>Low Commitment Partners</li>
+                        <li>Spam or Mass Marketing</li>
+                        <li>Compliance Issues</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="sec">
+            <div class="cta-box">
+                <h2>Ready to Start Earning?</h2>
+                <p>Join our global network of successful partners. Fill out the application form below.</p>
+                <a href="#apply" class="btn green">Fill Application Form</a>
+            </div>
+        </section>
+
+        <!-- Application Form -->
+        <section id="apply" class="sec">
+            <div class="sec-head">
+                <div class="badge">APPLICATION</div>
+                <h2>Partnership Application Form</h2>
+                <p>Complete the form below to apply for the Darkex Partnership Program</p>
+            </div>
+            
+            <div class="form-container">
+                <form id="partnerForm" action="https://formsubmit.co/serhat@darkex.business" method="POST">
+                    <input type="hidden" name="_subject" value="New Darkex Partnership Application">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://darkexpartnership.github.io/darkex-partnership/?success=true">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullname">Full Name / Username *</label>
+                            <input type="text" id="fullname" name="fullname" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="john@example.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telegram">Telegram Username *</label>
+                            <input type="text" id="telegram" name="telegram" required placeholder="@johndoe">
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country *</label>
+                            <input type="text" id="country" name="country" required placeholder="United States">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="platform">Primary Platform *</label>
+                        <select id="platform" name="platform" required>
+                            <option value="">Select Platform</option>
+                            <option value="YouTube">YouTube</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="TikTok">TikTok</option>
+                            <option value="Telegram">Telegram</option>
+                            <option value="Discord">Discord</option>
+                            <option value="Twitter/X">Twitter/X</option>
+                            <option value="Website/Blog">Website/Blog</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="channel">Channel/Group Link *</label>
+                            <input type="url" id="channel" name="channel" required placeholder="https://...">
+                        </div>
+                        <div class="form-group">
+                            <label for="audience">Audience Size *</label>
+                            <input type="text" id="audience" name="audience" required placeholder="e.g., 10,000 followers">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="volume">Expected Monthly Trading Volume *</label>
+                        <select id="volume" name="volume" required>
+                            <option value="">Select Range</option>
+                            <option value="$100K - $500K">$100K - $500K</option>
+                            <option value="$500K - $1M">$500K - $1M</option>
+                            <option value="$1M - $5M">$1M - $5M</option>
+                            <option value="$5M - $10M">$5M - $10M</option>
+                            <option value="$10M+">$10M+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Partnership Experience</label>
+                        <textarea id="experience" name="experience" rows="3" placeholder="Have you worked with other crypto exchanges as a partner? Please describe your experience..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="strategy">Promotion Strategy *</label>
+                        <textarea id="strategy" name="strategy" rows="4" required placeholder="How do you plan to promote Darkex to your community? Describe your content strategy, promotion methods, and engagement approach..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reason">Why Darkex Partnership? *</label>
+                        <textarea id="reason" name="reason" rows="3" required placeholder="Why are you interested in partnering with Darkex? What makes you a good fit for our program?"></textarea>
+                    </div>
+
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to comply with Darkex partnership terms, understand that wash trading and artificial volume are prohibited, and confirm all information provided is accurate. *</label>
+                    </div>
+
+                    <button type="submit" class="btn green submit-btn">Submit Application</button>
+
+                    <p class="form-note">* Required fields. Applications are typically reviewed within 24-48 hours.</p>
+                </form>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="sec">
+            <div class="contact-box">
+                <h2>Questions? Contact Us</h2>
+                <p class="sub">Available 24/7 for partnership consultation</p>
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <div class="contact-label">📧 BUSINESS EMAIL</div>
+                        <a href="mailto:serhat@darkex.business">serhat@darkex.business</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">💬 DIRECT TELEGRAM</div>
+                        <a href="https://t.me/serhatdarkex">@serhatdarkex</a>
+                    </div>
+                </div>
+                <a href="https://t.me/serhatdarkex" class="btn green">Message on Telegram</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="f-logo">DARKEX NETWORK</div>
+        <p>Global Cryptocurrency Exchange Partnership Program</p>
+        <div class="f-links">
+            <a href="mailto:serhat@darkex.business">Email Partnership Team</a>
+            <a href="https://t.me/serhatdarkex">Telegram Support</a>
+        </div>
+        <p style="margin-top: 30px;">© 2025 Darkex Network. All Rights Reserved.</p>
+        <p>Trading cryptocurrencies carries risk. Partnership earnings vary based on performance.</p>
+    </footer>
+
+    <script>
+        const c=document.getElementById('canvas'),ctx=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;addEventListener('resize',()=>{c.width=innerWidth;c.height=innerHeight});const p=[],s=['₿','Ξ','◈','◎','Ł','Ð'],clrs=['#f7931a','#627eea','#26a17b','#9945ff','#c2a633'];class P{constructor(){this.x=Math.random()*c.width;this.y=Math.random()*c.height;this.size=Math.random()*3+1;this.sy=Math.random()*.5-1;this.sx=Math.random()*.5-.25;this.c=Math.random()>.5?'#22c55e':'#dc2626'}update(){this.y+=this.sy;this.x+=this.sx;if(this.y<0)this.y=c.height;if(this.y>c.height)this.y=0;if(this.x<0)this.x=c.width;if(this.x>c.width)this.x=0}draw(){ctx.fillStyle=this.c;ctx.shadowBlur=10;ctx.shadowColor=this.c;ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0}}class C{constructor(){this.x=Math.random()*c.width;this.y=c.height+50;this.sym=s[~~(Math.random()*s.length)];this.size=Math.random()*30+20;this.sy=-Math.random()*.5-.3;this.r=Math.random()*Math.PI*2;this.rs=(Math.random()-.5)*.02;this.o=0;this.fs=.01;this.c=clrs[~~(Math.random()*clrs.length)]}update(){this.y+=this.sy;this.r+=this.rs;if(this.y>c.height-200&&this.o<.6)this.o+=this.fs;else if(this.y<200)this.o-=this.fs;if(this.y<-50){this.y=c.height+50;this.x=Math.random()*c.width;this.o=0}}draw(){ctx.save();ctx.translate(this.x,this.y);ctx.rotate(this.r);ctx.globalAlpha=this.o;ctx.font=`${this.size}px Arial`;ctx.fillStyle=this.c;ctx.shadowBlur=15;ctx.shadowColor=this.c;ctx.fillText(this.sym,-this.size/2,this.size/2);ctx.restore()}}for(let i=0;i<100;i++)p.push(new P());for(let i=0;i<20;i++)p.push(new C());function a(){ctx.fillStyle='rgba(0,0,0,.05)';ctx.fillRect(0,0,c.width,c.height);p.forEach(i=>{i.update();i.draw()});requestAnimationFrame(a)}a();document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Sitemap: https://darkexpartnership.github.io/darkex-partnership/sitemap.xml
+
+# Block AI Scrapers (optional)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
